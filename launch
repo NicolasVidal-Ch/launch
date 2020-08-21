@@ -1,6 +1,6 @@
 #Prepare for install:
 apt install -y wget
-wget https://github.com/NicolasVidal-Ch/Script-test/archive/003.tar.gz
+wget https://github.com/NicolasVidal-Ch/Script-test/archive/004.tar.gz
 
 #Unzip the archive:
 tar xvf 003.tar.gz
