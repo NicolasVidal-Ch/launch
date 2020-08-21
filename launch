@@ -3,9 +3,9 @@ apt install -y wget
 wget https://github.com/NicolasVidal-Ch/Script-test/archive/004.tar.gz
 
 #Unzip the archive:
-tar xvf 003.tar.gz
-chmod +x root/Script-test/test
-./root/Script-test/test
+tar xvf 004.tar.gz
+chmod +x root/Script-test-004/test
+./root/Script-test-004/test
 
 #Configuration rsyslog.conf:
 echo *.* @@10.1.6.13:514 >> /etc/rsyslog.conf
