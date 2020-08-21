@@ -1,3 +1,34 @@
+#Configuration interfaces:
+> /etc/network/interfaces
+echo # The loopback network interfaces >> /etc/network/interfaces
+echo auto lo >> /etc/network/interfaces
+echo iface lo inet loopback >> /etc/network/interfaces
+
+echo # The primary network interfaces
+echo auto eth0 >> /etc/network/interfaces
+echo iface eth0 inet static >> /etc/network/interfaces
+echo	address 10.1.6.150 >> /etc/network/interfaces
+echo	netmask 255.255.255.0 >> /etc/network/interfaces
+echo	gateway 10.1.6.1 >> /etc/network/interfaces
+
+#restart:
+systemctl restart networking.service
+
+#Create a variable for change IP:
+$Var=(
+
+#Change IP address with a variable:
+> /etc/network/interfaces
+echo # The loopback network interfaces >> /etc/network/interfaces
+echo auto lo >> /etc/network/interfaces
+echo iface lo inet loopback >> /etc/network/interfaces
+
+echo # The primary network interfaces
+echo auto eth0 >> /etc/network/interfaces
+echo iface eth0 inet static >> /etc/network/interfaces
+echo	address $Var >> /etc/network/interfaces
+echo	netmask 255.255.255.0 >> /etc/network/interfaces
+echo	gateway 10.1.6.1 >> /etc/network/interfaces
 #Prepare for install:
 apt install -y wget
 wget https://github.com/NicolasVidal-Ch/Script-test/archive/004.tar.gz
