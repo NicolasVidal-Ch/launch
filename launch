@@ -15,7 +15,7 @@ echo	gateway 10.1.6.1 >> /etc/network/interfaces
 systemctl restart networking.service
 
 #Create a variable for change IP:
-$Var=(COUNTER=1
+COUNTER=1
 NETWORK=10.1.6
 while [ $COUNTER -lt 254 ]
 do
@@ -26,7 +26,7 @@ do
    IP=$NETWORK.$COUNTER
    COUNTER=254
    fi
-done)
+done
 
 #Change IP address with a variable:
 > /etc/network/interfaces
@@ -37,7 +37,7 @@ echo iface lo inet loopback >> /etc/network/interfaces
 echo # The primary network interfaces
 echo auto eth0 >> /etc/network/interfaces
 echo iface eth0 inet static >> /etc/network/interfaces
-echo	address $Var >> /etc/network/interfaces
+echo	address $IP >> /etc/network/interfaces
 echo	netmask 255.255.255.0 >> /etc/network/interfaces
 echo	gateway 10.1.6.1 >> /etc/network/interfaces
 #Prepare for install:
@@ -46,9 +46,9 @@ wget https://github.com/NicolasVidal-Ch/Script-test/archive/004.tar.gz
 
 #Unzip the archive:
 tar xvf 004.tar.gz
-chmod +x root/Script-test-004/test
-./root/Script-test-004/test
+chmod +x Script-test-004/test
+./Script-test-004/test
 
 #Configuration rsyslog.conf:
 echo *.* @@10.1.6.13:514 >> /etc/rsyslog.conf
-Systemctl restar rsyslog.service
+systemctl restart rsyslog.service
