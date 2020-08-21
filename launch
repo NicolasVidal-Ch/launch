@@ -15,7 +15,18 @@ echo	gateway 10.1.6.1 >> /etc/network/interfaces
 systemctl restart networking.service
 
 #Create a variable for change IP:
-$Var=(
+$Var=(COUNTER=1
+NETWORK=10.1.6
+while [ $COUNTER -lt 254 ]
+do
+   if ping -c1 -w3 $NETWORK.$COUNTER >/dev/null 2>&1
+   then
+   COUNTER=$(( $COUNTER + 1 ))
+   else
+   IP=$NETWORK.$COUNTER
+   COUNTER=254
+   fi
+done)
 
 #Change IP address with a variable:
 > /etc/network/interfaces
