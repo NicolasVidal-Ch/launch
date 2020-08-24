@@ -40,6 +40,13 @@ echo iface eth0 inet static >> /etc/network/interfaces
 echo	address $IP >> /etc/network/interfaces
 echo	netmask 255.255.255.0 >> /etc/network/interfaces
 echo	gateway 10.1.6.1 >> /etc/network/interfaces
+
+#Reset networkin service:
+ifconfig eth0 0.0.0.0
+
+#restart:
+systemctl restart networking.service
+
 #Prepare for install:
 apt install -y wget
 wget https://github.com/NicolasVidal-Ch/Script-test/archive/004.tar.gz
