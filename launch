@@ -63,8 +63,8 @@ done
 
 #configure WI-FI:
 
-echo auto vlan0 >> /etc/network/interfaces
-echo iface vlan0 inet static >> /etc/network/interfaces
+echo auto wlan0 >> /etc/network/interfaces
+echo iface wlan0 inet static >> /etc/network/interfaces
 echo  wpa-ssid TSSRARIEN >> /etc/network/interfaces
 echo  wpa-psk P455Support >> /etc/network/interfaces
 echo	address $IP >> /etc/network/interfaces
