@@ -1,3 +1,11 @@
+#Serveur Ntp:
+> /etc/systemd/timesyncd.conf
+echo [Time] >> /etc/systemd/timesyncd.conf
+echo Servers=ntp.serveur1.fr ntp.serveur2.fr >> /etc/systemd/timesyncd.conf
+
+#Configure Ntp:
+sudo timedatectl set-ntp true
+
 #Configuration interfaces:
 > /etc/network/interfaces
 echo auto lo >> /etc/network/interfaces
@@ -50,16 +58,10 @@ echo  wpa-psk P455Support >> /etc/network/interfaces
 #restart:
 systemctl restart networking.service
 
+sudo rfkill unblock wifi
+
 #install sudo:
 apt install -y sudo mc
-
-#Serveur Ntp:
-> /etc/systemd/timesyncd.conf
-echo [Time] >> >> /etc/systemd/timesyncd.conf
-echo Servers=ntp.serveur1.fr ntp.serveur2.fr >> /etc/systemd/timesyncd.conf
-
-#Configure Ntp:
-sudo timedatectl set-ntp true
 
 #Prepare for install:
 apt install -y wget
