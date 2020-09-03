@@ -1,24 +1,12 @@
-#Serveur Ntp:
-> /etc/systemd/timesyncd.conf
-echo [Time] >> /etc/systemd/timesyncd.conf
-echo Servers=ntp.serveur1.fr ntp.serveur2.fr >> /etc/systemd/timesyncd.conf
+#server ntp
+apt install -y ntp ntpdate
+systemctl enable ntp.service
+systemctl restart ntp.service
+systemctl restart ntpdate
 
-#Configure Ntp:
-sudo timedatectl set-ntp true
-
-#Configuration interfaces:
-> /etc/network/interfaces
-echo auto lo >> /etc/network/interfaces
-echo iface lo inet loopback >> /etc/network/interfaces
-
-echo auto eth0 >> /etc/network/interfaces
-echo iface eth0 inet static >> /etc/network/interfaces
-echo	address 10.1.6.150 >> /etc/network/interfaces
-echo	netmask 255.255.255.0 >> /etc/network/interfaces
-echo	gateway 10.1.6.1 >> /etc/network/interfaces
-
-#restart:
-systemctl restart networking.service
+#Upgrade
+apt update
+apt -y full-upgrade
 
 #Create a variable for change IP:
 COUNTER=2
@@ -34,9 +22,15 @@ do
    fi
 done
 
+#install sudo:
+apt install -y sudo mc wget
+
+
+#Prepare for install:
+wget --no-check-certificate https://github.com/NicolasVidal-Ch/Script-test/archive/004.tar.gz
+
 #Change IP address with a variable:
-> /etc/network/interfaces
-echo auto lo >> /etc/network/interfaces
+echo auto lo > /etc/network/interfaces
 echo iface lo inet loopback >> /etc/network/interfaces
 
 echo auto eth0 >> /etc/network/interfaces
@@ -47,25 +41,6 @@ echo	gateway 10.1.6.1 >> /etc/network/interfaces
 
 #restart:
 systemctl restart networking.service
-
-#configure WI-FI:
-
-echo auto wlan0 >> /etc/network/interfaces
-echo iface wlan0 inet dhcp >> /etc/network/interfaces
-echo  wpa-ssid TSSRARIEN >> /etc/network/interfaces
-echo  wpa-psk P455Support >> /etc/network/interfaces
-
-#restart:
-systemctl restart networking.service
-
-sudo rfkill unblock wifi
-
-#install sudo:
-apt install -y sudo mc
-
-#Prepare for install:
-apt install -y wget
-wget --no-check-certificate https://github.com/NicolasVidal-Ch/Script-test/archive/004.tar.gz
 
 #Unzip the archive:
 tar xvf 004.tar.gz
