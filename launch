@@ -4,6 +4,17 @@ systemctl enable ntp.service
 systemctl restart ntp.service
 systemctl restart ntpdate
 
+#Configuration NTP
+sed -i '10c \NTPSERVER="10.2.0.1"\' /etc/default/ntpdate
+sed -i '23,26c \server "10.2.0.1"\' /etc/ntp.conf
+/etc/init.d/ntp stop
+ntpd -q -g
+/etc/init.d/ntp start
+
+#Modification du fuseau horaire
+rm /etc/localtime  
+ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
+
 #Upgrade
 apt update
 apt -y full-upgrade
