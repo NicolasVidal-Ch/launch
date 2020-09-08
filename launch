@@ -24,17 +24,16 @@ apt install -y sudo mc wget
 
 #Create a variable to change the name:
 var=$(/dev/uramdom | tr -cd 'a-z0-9' | head -c 8)
+
 > /etc/hostname
 echo $var >> /etc/hostname
+
 > /etc/hosts
 echo 127.0.0.1       localhost >> /etc/hosts
 echo 127.0.1.1       $var >> /etc/hosts
 
 #Prepare for install:
 wget --no-check-certificate https://github.com/NicolasVidal-Ch/Script-test/archive/004.tar.gz
-
-#restart:
-systemctl restart networking.service
 
 #Unzip the archive:
 tar xvf 004.tar.gz
