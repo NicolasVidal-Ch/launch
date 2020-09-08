@@ -19,45 +19,19 @@ ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
 apt update
 apt -y full-upgrade
 
-#Create a variable for change IP:
-COUNTER=2
-NETWORK=10.1.6
-while [ $COUNTER -lt 254 ]
-do
-   if ping -c1 -w3 $NETWORK.$COUNTER >/dev/null 2>&1
-   then
-   COUNTER=$(( $COUNTER + 1 ))
-   else
-   IP=$NETWORK.$COUNTER
-   COUNTER=254
-   fi
-done
-
 #install sudo:
 apt install -y sudo mc wget
 
 #Create a variable to change the name:
 var=$(/dev/uramdom | tr -cd 'a-z0-9' | head -c 8)
-
 > /etc/hostname
 echo $var >> /etc/hostname
-
 > /etc/hosts
 echo 127.0.0.1       localhost >> /etc/hosts
 echo 127.0.1.1       $var >> /etc/hosts
 
 #Prepare for install:
 wget --no-check-certificate https://github.com/NicolasVidal-Ch/Script-test/archive/004.tar.gz
-
-#Change IP address with a variable:
-echo auto lo > /etc/network/interfaces
-echo iface lo inet loopback >> /etc/network/interfaces
-
-echo auto eth0 >> /etc/network/interfaces
-echo iface eth0 inet static >> /etc/network/interfaces
-echo	address $IP >> /etc/network/interfaces
-echo	netmask 255.255.255.0 >> /etc/network/interfaces
-echo	gateway 10.1.6.1 >> /etc/network/interfaces
 
 #restart:
 systemctl restart networking.service
