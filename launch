@@ -37,7 +37,7 @@ systemctl restart sshd.service
 
 
 #Create a variable to change the name:
-var=$(/dev/uramdom | tr -cd 'a-z0-9' | head -c 8)
+var=$RANDOM
 
 > /etc/hostname
 echo $var >> /etc/hostname
