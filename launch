@@ -35,17 +35,6 @@ echo PermitRootLogin=yes >> /etc/ssh/sshd_config
 systemctl enable ssh
 systemctl restart sshd.service
 
-
-#Create a variable to change the name:
-var=$RANDOM
-
-> /etc/hostname
-echo $var >> /etc/hostname
-
-> /etc/hosts
-echo 127.0.0.1       localhost >> /etc/hosts
-echo 127.0.1.1       $var >> /etc/hosts
-
 #Configuration rsyslog.conf:
 echo *.* @@10.1.6.13:514 >> /etc/rsyslog.conf
 systemctl restart rsyslog.service
