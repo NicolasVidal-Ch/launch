@@ -1,3 +1,9 @@
+#Dépots Raspberry
+echo deb http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi > /etc/apt/sources.list
+
+#DNS name server:
+echo nameserver 8.8.8.8 > /etc/resolv.conf
+
 #server ntp
 apt install -y ntp ntpdate
 systemctl enable ntp.service
@@ -20,7 +26,15 @@ apt update
 apt -y full-upgrade
 
 #install sudo:
-apt install -y sudo mc wget
+apt install -y sudo mc wget ansible ssh git docker bc build-essential dkms rsync raspberrypi-kernel-headers
+
+#Configuration SSH:
+echo PermitRootLogin=yes >> /etc/ssh/sshd_config
+
+#Restart SSH:
+systemctl enable ssh
+systemctl restart sshd.service
+
 
 #Create a variable to change the name:
 var=$(/dev/uramdom | tr -cd 'a-z0-9' | head -c 8)
@@ -32,14 +46,9 @@ echo $var >> /etc/hostname
 echo 127.0.0.1       localhost >> /etc/hosts
 echo 127.0.1.1       $var >> /etc/hosts
 
-#Prepare for install:
-wget --no-check-certificate https://github.com/NicolasVidal-Ch/Install/archive/004.tar.gz
-
-#Unzip the archive:
-tar xvf 004.tar.gz
-chmod +x Script-test-004/test.sh
-sh Script-test-004/test.sh
-
 #Configuration rsyslog.conf:
 echo *.* @@10.1.6.13:514 >> /etc/rsyslog.conf
 systemctl restart rsyslog.service
+
+#Kill Cron:
+sed -i '/launch/d' /etc/crontab
