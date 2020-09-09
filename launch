@@ -1,5 +1,5 @@
 #Dépots Raspberry
-echo deb http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi > /etc/apt/sources.list
+#echo deb http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi > /etc/apt/sources.list
 
 #DNS name server:
 echo nameserver 8.8.8.8 > /etc/resolv.conf
