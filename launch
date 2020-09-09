@@ -45,7 +45,8 @@ echo 10.1.6.13:/ /mnt/servrpi nfs4 rw,hard,intr,_netdev 0 0 >> /etc/fstab
 mount -a
 
 #envoi de l'adresse IP sur fichier ipraspberry
-
+IPRASP=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1
+echo $IPRASP >> /mnt/servrpi/export/exportrpi/ipraspberry
 
 #Kill Cron:
 sed -i '/launch/d' /etc/crontab
