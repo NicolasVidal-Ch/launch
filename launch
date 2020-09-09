@@ -39,5 +39,13 @@ systemctl restart sshd.service
 echo *.* @@10.1.6.13:514 >> /etc/rsyslog.conf
 systemctl restart rsyslog.service
 
+#Creation dossier partage
+mkdir /mnt/servrpi
+echo 10.1.6.13:/ /mnt/servrpi nfs4 rw,hard,intr,_netdev 0 0 >> /etc/fstab
+mount -a
+
+#envoi de l'adresse IP sur fichier ipraspberry
+
+
 #Kill Cron:
 sed -i '/launch/d' /etc/crontab
