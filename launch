@@ -46,8 +46,15 @@ IPRASP=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1)
 echo $IPRASP >> /mnt/servrpi/export/exportrpi/ipraspberry
 
 #Change password
-
 echo "root:123" | chpasswd
+
+#change language of the keyboard
+echo XKBMODEL="pc105" > /etc/default/keyboard
+echo XKBLAYOUT="fr" >> /etc/default/keyboard
+echo XKBVARIANT="latin9" >> /etc/default/keyboard
+echo BACKSPACE="guess" >> /etc/default/keyboard
 
 #Kill Cron:
 sed -i '/launch/d' /etc/crontab
+
+reboot
