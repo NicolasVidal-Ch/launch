@@ -43,7 +43,7 @@ mount -a
 
 #envoi de l'adresse IP sur fichier ipraspberry
 IPRASP=$(ip a | grep '10.1.6' | cut -d ' ' -f6 | cut -d '/' -f1)
-echo $IPRASP >> /mnt/servrpi/export/exportrpi/ipraspberry
+echo $IPRASP >> /mnt/servrpi/export/exportrpi/hosts
 
 #Change password
 echo "root:123" | chpasswd
