@@ -57,4 +57,7 @@ echo BACKSPACE="guess" >> /etc/default/keyboard
 #Kill Cron:
 sed -i '/launch/d' /etc/crontab
 
+#Remove a script "launch.sh" whit a cron:
+echo @reboot root rm -f /etc/launch.sh >> /etc/crontab
+
 reboot
