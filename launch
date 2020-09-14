@@ -59,8 +59,4 @@ sed -i '/launch/d' /etc/crontab
 #Remove the script "launch.sh" with a cron:
 echo @reboot root rm -f /etc/launch.sh >> /etc/crontab
 
-#unblock wifi interface
-rfkill unblock 0
-rfkill unblock 1
-
 reboot
