@@ -59,4 +59,7 @@ sed -i '/launch/d' /etc/crontab
 #Remove the script "launch.sh" with a cron:
 echo @reboot root rm -f /etc/launch.sh >> /etc/crontab
 
+#remove RFKILL
+apt -y remove rfkill
+
 reboot
