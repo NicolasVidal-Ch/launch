@@ -23,7 +23,7 @@ apt update
 apt -y full-upgrade
 
 #install sudo:
-apt install -y sudo mc wget ansible ssh git docker bc build-essential dkms rsync raspberrypi-kernel-headers
+apt install -y sudo mc wget ansible ssh git docker bc build-essential dkms rsync raspberrypi-kernel-headers network-manager
 
 #Configuration SSH:
 echo PermitRootLogin=yes >> /etc/ssh/sshd_config
