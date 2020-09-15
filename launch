@@ -14,7 +14,7 @@ sed -i '23,26c \server "10.2.0.1"\' /etc/ntp.conf
 ntpd -q -g
 /etc/init.d/ntp start
 
-#Modification du fuseau horaire
+#Modification du fuseau horaire  
 rm /etc/localtime  
 ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
 
@@ -62,4 +62,6 @@ echo @reboot root rm -f /etc/launch.sh >> /etc/crontab
 #remove RFKILL
 apt -y remove rfkill
 
+#reboot the Pi
 reboot
+
