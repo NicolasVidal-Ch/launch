@@ -1,3 +1,6 @@
+#Hdmi safe mode
+echo hdmi_safe=1 >> /boot/config.txt
+
 #DNS name server:
 echo nameserver 8.8.8.8 > /etc/resolv.conf
 
