@@ -1,5 +1,16 @@
 #Hdmi safe mode
-echo hdmi_safe=1 >> /boot/config.txt
+> /boot/config.txt
+echo disable_overscan=1 >> /boot/config.txt
+echo hdmi_group=1 >> /boot/config.txt
+echo hdmi_mode=16 >> /boot/config.txt
+echo dtparam=audio=on >> /boot/config.txt
+echo [pi0] >> /boot/config.txt >> /boot/config.txt 
+echo gpio=8=np >> /boot/config.txt
+echo [pi2] >> /boot/config.txt
+echo gpio=8=pu >> /boot/config.txt
+echo [pi4] >> /boot/config.txt
+echo [all] >> /boot/config.txt
+echo enable_uart=1 >> /boot/config.txt
 
 #DNS name server:
 echo nameserver 8.8.8.8 > /etc/resolv.conf
